@@ -27,62 +27,62 @@ https://dojang.io/mod/page/view.php?id=2176
 ```
 ### 변수
 - 변수 선언
-```
+```python
 x, y, z = 10, 20
 x = y = z = 10
 ```
 - 변수 삭제
 > list 사용할 때 del이 유용하게 쓰인다.
-```
+```python
 x = 10
 del x
 ```
 - 빈 변수 선언
 >보통 다른언어에서 null로 사용된다.
-```
+```python
 x = None
 ```
 ### input 함수
 #### input 함수를 사용해보자.
-```
+```python
 input()
-input :: Hello, world!
-output :: 'Hello, world!'
+#input :: Hello, world!
+#output :: 'Hello, world!'
 ```
 #### input 함수를 사용해 변수에 넣어보자.
-```
+```python
 x = input()
-input :: Hello, world!
-output :: 
+#input :: Hello, world!
+#output :: 
 x
-'Hello, world!'
+#'Hello, world!'
 ```
 #### input 함수에 placeholder 기능
-```
+```python
 x = input('문자열을 입력하세요: ')
-문자열을 입력하세요: Hello, world!
+#문자열을 입력하세요: Hello, world!
 x
-'Hello, world!'
+#'Hello, world!'
 ```
 #### input 함수에 입력값 split
 변수1, 변수2 = input('문자열').split('기준 문자열')
-```
+```python
 a, b = input('숫자 두 개를 입력하세요: ').split() # 입력받은 값을 공백 기준으로 split
-숫자 두개를 입력하세요: 10 20
+#숫자 두개를 입력하세요: 10 20
 ```
 #### map에 int와 input함수를 같이 사용하면 input 결과를 모두 int로 반환해준다.
-```
+```python
 a, b = map(int, input('숫자 두 개를 입력하세요: ').split())
-숫자 두 개를 입력하세요: 10 20
+#숫자 두 개를 입력하세요: 10 20
 ```
 ### output
 #### 값을 여러개 출력하기
 print(값1, 값2, 값3)
-```
+```python
 print(1, 2, 3)
-1 2 3
+#1 2 3
 print('Hello', 'Python')
-Hello Python
+#Hello Python
 ```
 #### sep로 값 사이에 문자 넣기
 sep :: separator
@@ -92,7 +92,204 @@ print(1, 2, 3, sep=', ')
 # 1, 2, 3
 print(1920, 1080, sep='x') 
 # 1920x1080
+print(1, 2, 3, sep='\n')
+#1
+#2
+#3
+print(1)
+print(2)
+print(3)
+#1
+#2
+#3
+print(1, end='')
+print(2, end='')
+print(3, end='')
+#123
 ```  
+### 비교 연산자
+is, is not  
+==, !=는 값 자체를 비교하고, is, is not 은 객체를 비교
+```python
+a = -5
+a is -5
+#True
+a = -6
+a is -6
+#False
+```
+변수 a가 있는 상태에서 다른 값을 할당하면 메모리 주소가 달라진다.
+
+### list
+빈 list 생성
+```python
+b = list()
+b
+#[]
+```
+range 이용하여 list 생성
+```python
+range(10) or range(0, 10)
+range(0, 10, 2)
+# [0, 2, 4, 6, 8]
+range(10, 0, -1)
+# [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+a = list(range(10))
+a
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+```
+### tuple
+- list 처럼 요소를 일렬로 저장하지만 안에 저장된 요소를 변경, 추가, 삭제할 수 없다.  
+- 읽기 전용 리스트
+```python
+a = (38, 21, 53, 62, 19)
+a
+#(38, 21, 53, 62, 19)
+a = 38, 21, 53, 62, 19
+a
+#(38, 21, 53, 62, 19)
+```
+range 이용하여 tuple 생성
+```python
+a = tuple(range(10))
+a
+#(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
+```
+tuple -> list
+```python
+a = [1, 2, 3]
+tuple(a)
+#(1, 2, 3)
+```
+list -> tuple
+```python
+a = (1, 2, 3)
+list(a)
+#[1, 2, 3]
+```
+언패킹 : list와 tuple의 요소를 변수 여러개에 할당하는것
+```python
+x = [1,2,3]
+a,b,c = x
+print(a,b,c)
+#1 2 3
+y = (4,5,6)
+d, e, f = y
+print(d,e,f)
+#4 5 6 
+```
+### 시퀀스 자료형 활용
+#### 특정값 체크
+```python
+a = [1,2,3,4,5,6,7,8,9]
+9 in a
+#True
+11 not in a
+#True
+'P' in 'Hello, Python'
+#True
+```
+#### 객체 연결
+```python
+a = [0, 10, 20, 30]
+b = [9, 8, 7, 6]
+a + b
+#[0, 10, 20, 30, 9, 8, 7, 6] 
+```
+range는 `+` 연산자로 연결할 수 없다.   
+문자열에 숫자 연결할 수 없다. 숫자를 str으로 치환 후 연결
+```python
+a = range(10)
+b = range(10, 20)
+#a + b (X)
+#list(a) + list(b) (O)
+```
+#### list && tuple 개수
+```python
+a = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+len(a)
+hello = '안녕하세요'
+len(hello.encode('utf-8'))
+```
+#### list slice
+```python
+a = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+a[0:4]
+#[0, 1, 2, 3]
+a[2:8:3]
+#[2, 5]
+a[:3]
+#[0, 1, 2]
+a[:]
+#[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+```
+###딕셔너리
+- 연관된 값을 묶어서 저장하는 용도로 딕셔너리 자료형  
+- 중복되는 키는 저장되지 않음. (키가 중복되면 가장 뒤에 있는 값만 사용됨.)
+```python
+lux = {'health': 490, 'mana': 334, 'melee': 550, 'armor': 18.72}
+```
+#### 딕셔너리 생성
+```python
+a = {}
+b = dict()
+c = dict(health=490, mana=334, melee=550, armor=18.72)
+d = dict(zip(['health', 'mana', 'melee', 'armor'], [490, 334, 550, 18.72]))
+e = dict([('health', 490), ('mana', 334), ('melee', 550), ('armor', 18.72)])
+f = dict({'health': 490, 'mana': 334, 'melee': 550, 'armor': 18.72})
+```
+#### 딕셔너리의 키에 값 할당
+딕셔너리[키] = 값
+```python
+lux = {'health': 490, 'mana': 334, 'melee': 550, 'armor': 18.72}
+lux['health'] = 2037
+```
+키 값 확인
+```python
+lux = {'health': 490, 'mana': 334, 'melee': 550, 'armor': 18.72}
+'health' in lux
+```
+키 개수
+```python
+lux = {'health': 490, 'mana': 334, 'melee': 550, 'armor': 18.72}
+len(lux)
+```
+### if 조건문
+- `들여쓰기` 필수
+- `:` 필수
+```python
+x = 10
+if x == 10:
+    print('10입니다.')
+else:
+    print('10이 아닙니다.')
+
+if x == 10:
+    pass
+```
+### 반복문
+#### for
+```python
+for i in range(100):
+    print('Hello, world')
+
+x = ('apple', 'orange', 'grape')
+for fruit in x:
+    print(fruit)
+```
+#### while
+```python
+i = 0
+while i < 100:
+    print('Hello, world!')
+    i += 1
+```
+
+### 주석
+- `TODO`
+- `FIXME`
+- `BUG`
+- `NOTE`
 
 ### keyword
 - 인터프리터(intepreter) : 코드를 한줄 한줄 실행하여 결과를 얻는 방식
